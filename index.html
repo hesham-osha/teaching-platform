@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>علّمني — دروس لايف وكورسات مسجلة بالدولار</title>
+<meta name="description" content="منصة علّمني: دروس لايف بمكالمات صوت وفيديو مع معلمين، وكورسات مسجلة — احجز وادفع وقيّم، كل حاجة بالدولار ($).">
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#" class="logo" data-nav="home">🎓 علّمني</a>
+    <nav class="mainnav" id="mainNav">
+      <button class="nav-btn" data-nav="home">الرئيسية</button>
+      <button class="nav-btn" data-nav="teachers">المعلمون</button>
+      <button class="nav-btn" data-nav="courses">الكورسات</button>
+      <button class="nav-btn auth-only" data-nav="my-sessions">جلساتي</button>
+      <button class="nav-btn auth-only" data-nav="my-courses">كورساتي</button>
+      <button class="nav-btn auth-only" data-nav="wallet">محفظتي</button>
+      <button class="nav-btn auth-only admin-only" data-nav="admin">لوحة التحكم</button>
+    </nav>
+    <div class="topbar-actions">
+      <span class="user-chip auth-only" id="userChip"></span>
+      <button class="btn btn-ghost auth-only" id="logoutBtn">تسجيل الخروج</button>
+      <button class="btn btn-primary guest-only" data-nav="auth">دخول / حساب جديد</button>
+    </div>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ============ الرئيسية ============ -->
+  <section class="view" id="view-home">
+    <div class="hero">
+      <h1>اتعلّم لايف… <span class="accent">مع معلم حقيقي</span> 🎓</h1>
+      <p class="hero-sub">دروس لايف بمكالمات صوت وفيديو مع معلمين في إنجليزي ورياضيات وعربي وبرمجة، وكورسات مسجلة تتفرج عليها أي وقت — كل حاجة بالدولار ($).</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary btn-lg" data-nav="teachers">دوّر على معلم 🔍</button>
+        <button class="btn btn-secondary btn-lg" data-nav="courses">شوف الكورسات 📚</button>
+        <button class="btn btn-ghost btn-lg guest-only" data-nav="auth">سجّل مجاناً</button>
+      </div>
+      <div class="hero-points">
+        <div class="point"><span class="point-icon">📹</span><strong>دروس لايف</strong><span>مكالمة صوت وفيديو ومشاركة شاشة من غير حساب</span></div>
+        <div class="point"><span class="point-icon">📚</span><strong>كورسات مسجلة</strong><span>دروس فيديو تتفرج عليها أي وقت وبالسرعة اللي تناسبك</span></div>
+        <div class="point"><span class="point-icon">💵</span><strong>بالدولار</strong><span>ادفع بالدولار واستلم على Binance (USDT) لو إنت معلم</span></div>
+        <div class="point"><span class="point-icon">⭐</span><strong>تقييم حقيقي</strong><span>قيّم المعلم والكورس بعد كل درس عشان الكل يستفيد</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>ابحث عن معلم حسب المادة</h2>
+      <div class="filters" id="homeSubjectFilters"></div>
+      <div class="tasks-grid" id="homeTeachers"></div>
+    </div>
+
+    <div class="card">
+      <h2>كورسات مميزة 📚</h2>
+      <div class="tasks-grid" id="homeCourses"></div>
+    </div>
+
+    <div class="how">
+      <h2>إزاي تبدأ؟</h2>
+      <ol class="steps">
+        <li><strong>1 — سجّل حساب مجاناً</strong><span>باسمك وإيميلك وكلمة سر، وجهاز واحد ليه حساب واحد بس.</span></li>
+        <li><strong>2 — اشحن رصيدك بالدولار</strong><span>حوّل USDT على Binance وبعت إثبات التحويل من المحفظة، والأدمن بيأكده.</span></li>
+        <li><strong>3 — احجز درس لايف أو سجّل في كورس</strong><span>اختار المعلم والموعد والمدة، والسعر بيتخصم من رصيدك.</span></li>
+        <li><strong>4 — ادخل غرفة الدرس</strong><span>مكالمة فيديو وصوت ومشاركة شاشة وشات — وبعد الدرس قيّم المعلم.</span></li>
+      </ol>
+    </div>
+
+    <div class="stats-strip">
+      <div class="stat"><strong>$5 – $15</strong><span>سعر الساعة حسب المعلم</span></div>
+      <div class="stat"><strong>10%</strong><span>عمولة المنصة من كل جلسة وكورس</span></div>
+      <div class="stat"><strong>30 / 60 / 90</strong><span>مدة الدرس بالدقائق</span></div>
+      <div class="stat"><strong>$5</strong><span>الحد الأدنى للسحب (Binance USDT)</span></div>
+    </div>
+
+    <div class="note-box">
+      <strong>ملحوظة مهمة عن الحسابات:</strong>
+      كل جهاز ليه حساب واحد بس على المنصة. ولو إنت معلم: بعد ما الجلسة تخلص بتتأكد، بتاخد 90% من سعرها والمنصة بتاخد 10% عمولة — وتسحب رصيدك على Binance (USDT) من المحفظة.
+    </div>
+  </section>
+
+  <!-- ============ المعلمون ============ -->
+  <section class="view" id="view-teachers" hidden>
+    <h2>المعلمون 👨‍🏫</h2>
+    <p class="muted">اختار المادة عشان تفلتر المعلمين، ودوس على معلم عشان تشوف ملفه وتحجز درس معاه.</p>
+    <div class="filters" id="teacherSubjectFilters"></div>
+    <div class="tasks-grid" id="teachersList"></div>
+  </section>
+
+  <!-- ============ صفحة معلم ============ -->
+  <section class="view" id="view-teacher" hidden>
+    <div id="teacherProfile"></div>
+  </section>
+
+  <!-- ============ حجز جلسة ============ -->
+  <section class="view" id="view-book" hidden>
+    <div class="card">
+      <h2 id="bookTitle">احجز درس 📅</h2>
+      <div id="bookTeacherInfo" class="muted"></div>
+      <form id="bookForm">
+        <label>المادة
+          <select id="bookSubject" required></select>
+        </label>
+        <label>التاريخ والوقت
+          <input type="datetime-local" id="bookWhen" required>
+        </label>
+        <label>المدة
+          <select id="bookDuration">
+            <option value="30">30 دقيقة</option>
+            <option value="60" selected>60 دقيقة (ساعة)</option>
+            <option value="90">90 دقيقة</option>
+          </select>
+        </label>
+        <p>السعر: <strong id="bookPrice" class="accent">$0</strong> <span class="muted small" id="bookRateNote"></span></p>
+        <p class="muted small">المبلغ بيتخصم من رصيدك وبيتحجز لحد ما الجلسة تخلص أو تتلغي. رصيدك الحالي: <strong id="bookBalance">$0</strong></p>
+        <button class="btn btn-primary btn-block" type="submit">احجز الدرس</button>
+        <p class="form-msg" id="bookMsg"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ غرفة الدرس ============ -->
+  <section class="view" id="view-room" hidden>
+    <div id="roomInfo"></div>
+    <div class="card">
+      <h3>مكالمة الدرس 📹</h3>
+      <p class="muted small">المكالمة شغالة على Jitsi Meet — صوت وفيديو ومشاركة شاشة من غير ما تعمل حساب. لو المتصفح طلب إذن الكاميرا والميكروفون، وافق عشان المعلم يشوفك ويسمعك.</p>
+      <div id="jitsiWrap"></div>
+    </div>
+    <div class="card">
+      <h3>شات الجلسة 💬</h3>
+      <div class="chat-box" id="chatBox"></div>
+      <div class="chat-row">
+        <input type="text" id="chatInput" placeholder="اكتب رسالتك هنا…" maxlength="1000">
+        <button class="btn btn-primary" id="chatSendBtn">ابعت</button>
+      </div>
+    </div>
+    <div class="card">
+      <button class="btn btn-secondary" id="completeSessionBtn">✅ الجلسة خلصت — أكّد الإتمام</button>
+      <button class="btn btn-ghost" id="cancelSessionBtn">إلغاء الجلسة</button>
+      <p class="form-msg" id="roomMsg"></p>
+    </div>
+  </section>
+
+  <!-- ============ جلساتي ============ -->
+  <section class="view" id="view-my-sessions" hidden>
+    <h2>جلساتي 📅</h2>
+    <div class="queue" id="mySessionsList"></div>
+  </section>
+
+  <!-- ============ الكورسات ============ -->
+  <section class="view" id="view-courses" hidden>
+    <h2>الكورسات المسجلة 📚</h2>
+    <p class="muted">سجّل في الكورس مرة واحدة وتفرج على كل دروسه أي وقت.</p>
+    <div class="tasks-grid" id="coursesList"></div>
+  </section>
+
+  <!-- ============ صفحة كورس ============ -->
+  <section class="view" id="view-course" hidden>
+    <div id="courseDetails"></div>
+  </section>
+
+  <!-- ============ كورساتي ============ -->
+  <section class="view" id="view-my-courses" hidden>
+    <h2>كورساتي 📚</h2>
+    <div id="myCoursesList"></div>
+  </section>
+
+  <!-- ============ المحفظة ============ -->
+  <section class="view" id="view-wallet" hidden>
+    <h2>محفظتي 💰</h2>
+    <div class="wallet-cards">
+      <div class="wallet-card"><span class="muted">رصيدك</span><strong id="walletBalance">$0</strong></div>
+      <div class="wallet-card held"><span class="muted">محجوز (جلسات/سحوبات)</span><strong id="walletHeld">$0</strong></div>
+      <div class="wallet-card"><span class="muted">إجمالي اللي كسبته</span><strong id="walletEarned">$0</strong></div>
+    </div>
+    <div class="wallet-grid">
+      <div class="card">
+        <h3>اشحن رصيدك — Binance USDT 💵</h3>
+        <p class="muted small">حوّل USDT (شبكة TRC20) لعنوان المنصة، وبعدين ابعت المبلغ ورقم المعاملة (TXID) هنا. الأدمن بيراجع وينزّل المبلغ في رصيدك.</p>
+        <form id="depositForm">
+          <label>المبلغ بالدولار ($)
+            <input type="number" id="depositAmount" min="1" step="0.01" placeholder="مثال: 20" required>
+          </label>
+          <label>إثبات التحويل (رقم المعاملة TXID أو لينك الإثبات)
+            <input type="text" id="depositRef" placeholder="مثال: a1b2c3…" required>
+          </label>
+          <button class="btn btn-primary btn-block" type="submit">ابعت طلب الإيداع</button>
+          <p class="form-msg" id="depositMsg"></p>
+        </form>
+      </div>
+      <div class="card">
+        <h3>اطلب سحب — Binance USDT 💸</h3>
+        <p class="muted small">الحد الأدنى للسحب <strong id="minWithdrawNote">$5</strong>. الأدمن بيحوّل لك بنفسه USDT على عنوانك ويعلّم الطلب "اتدفع".</p>
+        <form id="withdrawForm">
+          <label>المبلغ بالدولار ($)
+            <input type="number" id="withdrawAmount" min="5" step="0.01" placeholder="مثال: 10" required>
+          </label>
+          <label>عنوان محفظة Binance (USDT — TRC20)
+            <input type="text" id="withdrawAddress" placeholder="مثال: T…" required>
+          </label>
+          <button class="btn btn-primary btn-block" type="submit">اطلب السحب</button>
+          <p class="form-msg" id="withdrawMsg"></p>
+        </form>
+      </div>
+    </div>
+    <div class="card" id="becomeTeacherCard">
+      <h3>عايز تبقى معلم؟ 👨‍🏫</h3>
+      <p class="muted small">سجّل كمعلم وحدد المواد وسعر الساعة — بتاخد 90% من كل جلسة وكورس، والمنصة 10% عمولة.</p>
+      <form id="becomeTeacherForm">
+        <label>المواد اللي بتدرّسها (اختار واحدة أو أكتر)
+          <select id="btSubjects" multiple size="4"></select>
+        </label>
+        <label>عنوانك كمدرّس
+          <input type="text" id="btHeadline" placeholder="مثال: مدرّس لغة إنجليزية — محادثة وقواعد">
+        </label>
+        <label>نبذة عنك
+          <textarea id="btBio" rows="3" placeholder="خبرتك وطريقة تدريسك…"></textarea>
+        </label>
+        <label>سعر الساعة بالدولار ($)
+          <input type="number" id="btRate" min="1" max="1000" step="0.5" placeholder="مثال: 10" required>
+        </label>
+        <button class="btn btn-primary btn-block" type="submit">ابْقَ معلمًا</button>
+        <p class="form-msg" id="btMsg"></p>
+      </form>
+    </div>
+    <h3 class="section-title">مدفوعاتي</h3>
+    <div class="ledger" id="myPayments"></div>
+    <h3 class="section-title">حركات المحفظة</h3>
+    <div class="ledger" id="walletLedger"></div>
+  </section>
+
+  <!-- ============ الدخول / التسجيل ============ -->
+  <section class="view" id="view-auth" hidden>
+    <div class="auth-card card">
+      <h2>دخول / حساب جديد 🔐</h2>
+      <div class="tabs">
+        <button class="tab active" id="tabLogin">دخول</button>
+        <button class="tab" id="tabRegister">حساب جديد</button>
+      </div>
+      <form id="loginForm">
+        <label>البريد الإلكتروني
+          <input type="email" id="loginEmail" required dir="ltr">
+        </label>
+        <label>كلمة السر
+          <input type="password" id="loginPassword" required dir="ltr">
+        </label>
+        <button class="btn btn-primary btn-block" type="submit">دخول</button>
+        <p class="form-msg" id="loginMsg"></p>
+      </form>
+      <form id="registerForm" hidden>
+        <label>الاسم
+          <input type="text" id="regName" required>
+        </label>
+        <label>البريد الإلكتروني
+          <input type="email" id="regEmail" required dir="ltr">
+        </label>
+        <label>كلمة السر (6 حروف على الأقل)
+          <input type="password" id="regPassword" required dir="ltr">
+        </label>
+        <p class="muted small">أول حساب بيتسجّل على المنصة بيبقى حساب الأدمن (صاحب المنصة). كل جهاز ليه حساب واحد بس.</p>
+        <button class="btn btn-primary btn-block" type="submit">سجّل حساب جديد</button>
+        <p class="form-msg" id="regMsg"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ لوحة الأدمن ============ -->
+  <section class="view" id="view-admin" hidden>
+    <h2>لوحة التحكم 🛠️</h2>
+    <div class="admin-stats" id="adminStats"></div>
+    <div class="tabs" id="adminTabs">
+      <button class="tab active" data-atab="sessions">الجلسات</button>
+      <button class="tab" data-atab="payments">المدفوعات</button>
+      <button class="tab" data-atab="courses">الكورسات</button>
+      <button class="tab" data-atab="users">المستخدمون</button>
+      <button class="tab" data-atab="settings">الإعدادات</button>
+    </div>
+    <div id="adminTab-sessions">
+      <div class="queue" id="adminSessionsList"></div>
+    </div>
+    <div id="adminTab-payments" hidden>
+      <div class="queue" id="adminPaymentsList"></div>
+    </div>
+    <div id="adminTab-courses" hidden>
+      <div class="card">
+        <h3>أضف كورس جديد</h3>
+        <form id="adminCourseForm">
+          <label>عنوان الكورس
+            <input type="text" id="acTitle" required>
+          </label>
+          <label>الوصف
+            <textarea id="acDesc" rows="2"></textarea>
+          </label>
+          <div class="form-row">
+            <label style="flex:1">سعر الكورس بالدولار ($)
+              <input type="number" id="acPrice" min="0" step="0.5" required>
+            </label>
+            <label style="flex:1">المعلم
+              <select id="acTeacher"></select>
+            </label>
+          </div>
+          <button class="btn btn-primary" type="submit">أضف الكورس</button>
+          <p class="form-msg" id="acMsg"></p>
+        </form>
+      </div>
+      <div class="queue" id="adminCoursesList"></div>
+    </div>
+    <div id="adminTab-users" hidden>
+      <div class="users-list" id="adminUsersList"></div>
+    </div>
+    <div id="adminTab-settings" hidden>
+      <div class="card">
+        <h3>إعدادات المنصة ⚙️</h3>
+        <form id="adminSettingsForm">
+          <label>عمولة المنصة (%) — المعلم بياخد الباقي
+            <input type="number" id="setCommission" min="1" max="99" step="1">
+          </label>
+          <label>الحد الأدنى للسحب بالدولار ($)
+            <input type="number" id="setMinWithdraw" min="1" step="1">
+          </label>
+          <button class="btn btn-primary" type="submit">احفظ الإعدادات</button>
+          <p class="form-msg" id="setMsg"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  منصة علّمني 🎓 — دروس لايف وكورسات مسجلة بالدولار ($) — الدفع والسحب عبر Binance (USDT)
+</footer>
+
+<div class="toast" id="toast" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,547 @@
+/* سجّل واكسب — تصميم بسيط، موبايل أولاً، من غير صور خارجية */
+:root {
+  --gold: #0f766e;
+  --gold-dark: #115e59;
+  --gold-soft: #ccfbf1;
+  --green: #0e9f6e;
+  --green-dark: #0b7a55;
+  --green-soft: #e6f7ef;
+  --amber: #0f766e;
+  --amber-soft: #ccfbf1;
+  --red: #b91c1c;
+  --red-soft: #fee2e2;
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --bg: #f6f7f9;
+  --card: #ffffff;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+h1, h2, h3 { line-height: 1.4; margin-top: 0; }
+h2 { font-size: 1.5rem; margin-bottom: .5rem; }
+h3 { font-size: 1.15rem; }
+p { margin: .4rem 0; }
+.muted { color: var(--muted); }
+.small { font-size: .85rem; }
+.accent { color: var(--gold); }
+[hidden] { display: none !important; }
+
+/* ---------- الشريط العلوي ---------- */
+.topbar {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.topbar-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: .6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+.logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--gold-dark);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.mainnav { display: flex; gap: .25rem; flex-wrap: wrap; }
+.nav-btn {
+  background: none;
+  border: none;
+  padding: .45rem .7rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .95rem;
+  color: var(--ink);
+  font-family: inherit;
+}
+.nav-btn:hover { background: var(--gold-soft); }
+.nav-btn.active { background: var(--gold); color: #fff; }
+.topbar-actions {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.user-chip {
+  font-size: .85rem;
+  background: var(--gold-soft);
+  color: var(--gold-dark);
+  padding: .3rem .6rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+/* ---------- أزرار ---------- */
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: .6rem 1.1rem;
+  font-size: .95rem;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+.btn:disabled { opacity: .55; cursor: not-allowed; }
+.btn-primary { background: var(--gold); color: #fff; }
+.btn-primary:hover { background: var(--gold-dark); }
+.btn-secondary { background: #111827; color: #fff; }
+.btn-ghost { background: transparent; border: 1px solid var(--line); color: var(--ink); }
+.btn-danger { background: var(--red); color: #fff; }
+.btn-sm { padding: .35rem .7rem; font-size: .85rem; }
+.btn-lg { padding: .8rem 1.5rem; font-size: 1.05rem; }
+.btn-block { width: 100%; }
+.linklike {
+  background: none; border: none; padding: 0;
+  color: var(--gold-dark); cursor: pointer;
+  font-family: inherit; font-size: inherit;
+  text-decoration: underline;
+}
+
+/* ---------- التخطيط ---------- */
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+}
+.view { animation: fade .2s ease; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- الرئيسية ---------- */
+.hero {
+  background: linear-gradient(135deg, var(--gold-soft), #fff);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+.hero h1 { font-size: 1.9rem; margin-bottom: .5rem; }
+.hero-sub { font-size: 1.1rem; max-width: 640px; margin: .5rem auto 1.25rem; }
+.hero-cta { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
+.hero-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: .75rem;
+  margin-top: 1.75rem;
+  text-align: start;
+}
+.point {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: .9rem;
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+}
+.point-icon { font-size: 1.4rem; }
+.point span:last-child { font-size: .88rem; color: var(--muted); }
+
+.how { margin-top: 2rem; }
+.steps {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: .75rem;
+}
+.steps li {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+.steps li span { font-size: .9rem; color: var(--muted); }
+
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: .75rem;
+  margin-top: 2rem;
+}
+.stat {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.stat strong { font-size: 1.4rem; color: var(--gold-dark); }
+.stat span { font-size: .9rem; color: var(--muted); }
+
+.note-box {
+  margin-top: 2rem;
+  background: var(--amber-soft);
+  border: 1px solid #fcd34d;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  font-size: .92rem;
+}
+
+/* مساحة إعلانات AdSense — الكود يتحط هنا بعد موافقة جوجل */
+.ads-slot {
+  margin: 2rem 0;
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: .9rem;
+  background: #fafafa;
+}
+
+/* ---------- نماذج ---------- */
+.auth-card {
+  max-width: 480px;
+  margin: 1rem auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.tabs { display: flex; gap: .5rem; margin: 1rem 0; }
+.tab {
+  flex: 1;
+  padding: .6rem;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+}
+.tab.active { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+form label {
+  display: block;
+  font-weight: 700;
+  font-size: .92rem;
+  margin-bottom: .8rem;
+}
+input, select, textarea {
+  width: 100%;
+  margin-top: .3rem;
+  padding: .6rem .75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: #fff;
+  color: var(--ink);
+}
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+  border-color: var(--gold);
+}
+textarea { resize: vertical; }
+.form-row { display: flex; gap: .6rem; flex-wrap: wrap; }
+.form-msg { min-height: 1.4em; font-size: .92rem; margin: .6rem 0 0; }
+.form-msg.error { color: var(--red); font-weight: 700; }
+.form-msg.ok { color: var(--green-dark); font-weight: 700; }
+
+/* ---------- التعدين ---------- */
+.mining-card {
+  background: linear-gradient(135deg, var(--gold-soft), #fff);
+  border: 1px solid #fcd34d;
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+.mining-card .countdown {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--gold-dark);
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  margin: .5rem 0;
+}
+.mining-card .points-line {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.bonus-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ---------- المهام ---------- */
+.filters { display: flex; gap: .4rem; flex-wrap: wrap; margin: .75rem 0; }
+.chip {
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 999px;
+  padding: .35rem .85rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: .9rem;
+}
+.chip.active { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+.tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.task-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+}
+.task-card.inactive { opacity: .6; }
+.task-top { display: flex; justify-content: space-between; align-items: flex-start; gap: .5rem; }
+.task-top h3 { margin: 0; font-size: 1.05rem; }
+.cat-badge {
+  background: var(--gold-soft);
+  color: var(--gold-dark);
+  font-size: .78rem;
+  font-weight: 700;
+  padding: .15rem .55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.pay { font-weight: 800; color: var(--gold-dark); font-size: 1.1rem; }
+.task-desc { font-size: .93rem; color: #374151; }
+.submit-box { margin-top: .5rem; border-top: 1px dashed var(--line); padding-top: .75rem; }
+.submit-box textarea { min-height: 70px; }
+
+.status {
+  display: inline-block;
+  font-size: .82rem;
+  font-weight: 700;
+  padding: .15rem .6rem;
+  border-radius: 999px;
+}
+.status-pending { background: var(--amber-soft); color: var(--amber); }
+.status-approved, .status-paid { background: var(--green-soft); color: var(--green-dark); }
+.status-rejected { background: var(--red-soft); color: var(--red); }
+.admin-note {
+  font-size: .88rem;
+  background: var(--red-soft);
+  border-radius: 8px;
+  padding: .5rem .7rem;
+  margin-top: .4rem;
+}
+
+.empty { color: var(--muted); text-align: center; padding: 1.5rem 0; }
+
+/* ---------- الإحالة ---------- */
+.ref-box {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+.ref-code {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+  color: var(--gold-dark);
+  background: var(--gold-soft);
+  border: 2px dashed var(--gold);
+  border-radius: 12px;
+  padding: .6rem 1rem;
+  display: inline-block;
+  margin: .5rem 0;
+  direction: ltr;
+}
+.ref-link {
+  direction: ltr;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: .5rem .75rem;
+  word-break: break-all;
+  font-size: .9rem;
+  margin: .5rem 0;
+}
+
+/* ---------- المحفظة ---------- */
+.wallet-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: .75rem;
+  margin: 1rem 0;
+}
+.wallet-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+}
+.wallet-card strong { font-size: 1.7rem; color: var(--gold-dark); }
+.wallet-card.held strong { color: var(--amber); }
+.wallet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+.section-title { margin-top: 2rem; }
+
+.ledger { display: flex; flex-direction: column; gap: .5rem; }
+.ledger-row {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: .7rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.ledger-row .note { font-size: .9rem; }
+.ledger-row .date { font-size: .8rem; color: var(--muted); display: block; }
+.ledger-amount { font-weight: 800; white-space: nowrap; }
+.ledger-amount.pos { color: var(--green-dark); }
+.ledger-amount.neg { color: var(--red); }
+
+/* ---------- الأدمن ---------- */
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: .75rem;
+  margin: 1rem 0;
+}
+.queue { display: flex; flex-direction: column; gap: .75rem; }
+.queue-item {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem;
+}
+.queue-item .meta { font-size: .9rem; color: #374151; }
+.queue-item .work {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: .6rem .8rem;
+  font-size: .92rem;
+  white-space: pre-wrap;
+  margin: .5rem 0;
+}
+.review-actions { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; margin-top: .6rem; }
+.review-actions input {
+  flex: 1;
+  min-width: 180px;
+  margin-top: 0;
+}
+.users-list { display: flex; flex-direction: column; gap: .75rem; }
+.user-row {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.user-row .adjust { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+.user-row .adjust input { flex: 1; min-width: 130px; margin-top: 0; }
+.role-badge {
+  background: #e0e7ff;
+  color: #3730a3;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: .15rem .55rem;
+  border-radius: 999px;
+}
+
+/* ---------- تذييل وتنبيه ---------- */
+.footer {
+  border-top: 1px solid var(--line);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  color: var(--muted);
+  font-size: .9rem;
+}
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  inset-inline: 1rem;
+  max-width: 520px;
+  margin: 0 auto;
+  background: #111827;
+  color: #fff;
+  border-radius: 12px;
+  padding: .85rem 1.1rem;
+  text-align: center;
+  z-index: 100;
+  box-shadow: 0 6px 24px rgba(0,0,0,.25);
+}
+
+@media (max-width: 560px) {
+  .hero h1 { font-size: 1.55rem; }
+  .hero { padding: 1.5rem 1rem; }
+  .topbar-inner { gap: .4rem; }
+  .mainnav { order: 3; width: 100%; }
+  .mining-card .countdown { font-size: 2rem; }
+}
+
+/* ---------- علّمني: إضافات ---------- */
+.jitsi-frame { width: 100%; height: 520px; border: 0; border-radius: var(--radius); background: #000; }
+.chat-box { border: 1px solid var(--line); border-radius: var(--radius); padding: .75rem; background: var(--card); max-height: 260px; overflow-y: auto; margin-bottom: .5rem; }
+.chat-msg { margin: .35rem 0; }
+.chat-msg .who { font-weight: 700; }
+.chat-msg.mine { text-align: left; }
+.chat-msg .time { color: var(--muted); font-size: .8rem; }
+.chat-row { display: flex; gap: .5rem; }
+.chat-row input { flex: 1; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } .jitsi-frame { height: 380px; } }
+.stars { color: #d97706; font-size: 1.1rem; letter-spacing: .1rem; }
+.badge { display: inline-block; padding: .1rem .5rem; border-radius: 999px; font-size: .8rem; background: var(--gold-soft); color: var(--gold-dark); }
+.badge-green { background: var(--green-soft); color: var(--green-dark); }
+.badge-red { background: var(--red-soft); color: var(--red); }
+.badge-gray { background: #f3f4f6; color: var(--muted); }
